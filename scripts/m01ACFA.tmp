@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8bbvh6o2xnyd"]
+
+[ext_resource type="Texture2D" uid="uid://ddke5yx1mf5rl" path="res://bg/nivel1.png" id="1_nckkb"]
+[ext_resource type="Script" path="res://scripts/m01.gd" id="1_nw5ts"]
+
+[node name="map01" type="Node2D"]
+script = ExtResource("1_nw5ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nckkb")
+centered = false
+metadata/_edit_lock_ = true

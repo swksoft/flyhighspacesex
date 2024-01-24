@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8bbvh6o2xnyd"]
+
+[ext_resource type="Texture2D" uid="uid://ddke5yx1mf5rl" path="res://bg/nivel1.png" id="1_nckkb"]
+[ext_resource type="Script" path="res://scripts/m01.gd" id="1_nw5ts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oi2d"]
+size = Vector2(45, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l17n"]
+size = Vector2(20, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l072s"]
+
+[node name="map01" type="Node2D"]
+script = ExtResource("1_nw5ts")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nckkb")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="AreaStop" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="StopCol" type="CollisionShape2D" parent="AreaStop"]
+position = Vector2(5783, 162)
+shape = SubResource("RectangleShape2D_0oi2d")
+debug_color = Color(0.894118, 0, 0.0823529, 0.419608)
+
+[node name="Triggers" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="T1col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(1007, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T2col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(1859, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T3col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(2701, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T4col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(2904, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T5col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(3415, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T6col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(3608, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T7col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(3810, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T8col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(4756, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T9col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(4823, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T10col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(4899, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T11col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(4981, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="T12col" type="CollisionShape2D" parent="Triggers"]
+position = Vector2(5084, 162)
+shape = SubResource("RectangleShape2D_2l17n")
+
+[node name="PITO" type="Area2D" parent="."]
+position = Vector2(1169, 118)
+collision_layer = 32
+collision_mask = 32
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PITO"]
+shape = SubResource("RectangleShape2D_l072s")
+
+[node name="Start" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="AreaStop" to="." method="_on_area_stop_area_entered"]
+[connection signal="area_entered" from="Triggers" to="." method="_on_triggers_area_entered"]
+[connection signal="area_entered" from="PITO" to="." method="_on_pito_area_entered"]
+[connection signal="timeout" from="Start" to="." method="_on_start_timeout"]

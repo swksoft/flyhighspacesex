@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8bbvh6o2xnyd"]
+
+[ext_resource type="Texture2D" uid="uid://ddke5yx1mf5rl" path="res://bg/nivel1.png" id="1_nckkb"]
+[ext_resource type="PackedScene" uid="uid://c0t624yir5myv" path="res://scripts/player.tscn" id="2_qw8jl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nckkb")
+centered = false
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_qw8jl")]

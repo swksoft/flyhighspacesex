@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwygub2v3lkyt"]
+
+[ext_resource type="Script" path="res://scripts/level_01.gd" id="1_8g4en"]
+[ext_resource type="PackedScene" uid="uid://c8bbvh6o2xnyd" path="res://scripts/m01.tscn" id="1_i71vo"]
+[ext_resource type="PackedScene" uid="uid://c0t624yir5myv" path="res://scripts/player.tscn" id="2_868j5"]
+[ext_resource type="AudioStream" uid="uid://hyyt1tnxp3kd" path="res://music/Battle_Sex_session.ogg" id="4_8ndq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b62lk"]
+size = Vector2(8, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js62p"]
+size = Vector2(20, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqg8h"]
+size = Vector2(614, 31)
+
+[node name="level01" type="Node2D"]
+script = ExtResource("1_8g4en")
+
+[node name="map01" parent="." instance=ExtResource("1_i71vo")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_868j5")]
+position = Vector2(46, 170)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+collision_layer = 32
+collision_mask = 38
+metadata/_edit_group_ = true
+
+[node name="FreeCol" type="CollisionShape2D" parent="Camera2D/Area2D"]
+position = Vector2(-4, 162)
+shape = SubResource("RectangleShape2D_b62lk")
+debug_color = Color(1, 0, 0.0235294, 0.419608)
+
+[node name="Area2D2" type="Area2D" parent="Camera2D"]
+position = Vector2(576, 0)
+collision_layer = 32
+collision_mask = 32
+metadata/_edit_group_ = true
+
+[node name="TriggerCol" type="CollisionShape2D" parent="Camera2D/Area2D2"]
+position = Vector2(10, 162)
+shape = SubResource("RectangleShape2D_js62p")
+debug_color = Color(0.0352941, 0.772549, 0, 0.419608)
+
+[node name="Lim" type="StaticBody2D" parent="Camera2D"]
+collision_layer = 64
+collision_mask = 9
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Lim"]
+position = Vector2(289, -14.5)
+shape = SubResource("RectangleShape2D_lqg8h")
+debug_color = Color(1, 1, 1, 0.0784314)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/Lim"]
+position = Vector2(-16, 78)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lqg8h")
+debug_color = Color(1, 1, 1, 0.0784314)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Camera2D/Lim"]
+position = Vector2(590, 99)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lqg8h")
+debug_color = Color(1, 1, 1, 0.0784314)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Camera2D/Lim"]
+position = Vector2(289, 340)
+shape = SubResource("RectangleShape2D_lqg8h")
+debug_color = Color(1, 1, 1, 0.0784314)
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8ndq6")
+volume_db = -10.0
+
+[connection signal="level_clear" from="." to="." method="_on_level_clear"]
+[connection signal="level_trigger" from="." to="." method="_on_level_trigger"]
+[connection signal="level_clear" from="map01" to="." method="_on_map_01_level_clear"]
+[connection signal="level_trigger" from="map01" to="." method="_on_map_01_level_trigger"]

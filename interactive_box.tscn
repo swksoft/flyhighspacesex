@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3m5ny8ktfmii"]
+
+[ext_resource type="PackedScene" uid="uid://b6hp658svoet5" path="res://interactive_container.tscn" id="1_t7bp2"]
+[ext_resource type="Script" path="res://interactive_box.gd" id="2_xbthg"]
+[ext_resource type="Texture2D" uid="uid://cxbm3nfnghext" path="res://sprites/caja.png" id="3_pmy8n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m5l4"]
+size = Vector2(32, 32)
+
+[node name="InteractiveContainer" instance=ExtResource("1_t7bp2")]
+script = ExtResource("2_xbthg")
+health = 500
+damage = 30
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_pmy8n")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_8m5l4")

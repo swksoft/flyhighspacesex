@@ -1,0 +1,219 @@
+[gd_scene load_steps=21 format=3 uid="uid://b0e81yxyrxxdr"]
+
+[ext_resource type="Texture2D" uid="uid://dr44cqet7rq47" path="res://sprites/gluglo1.png" id="1_dyjod"]
+[ext_resource type="Texture2D" uid="uid://csj2fmsr6qxq" path="res://sprites/gluglo2.png" id="1_rnye5"]
+[ext_resource type="Script" path="res://enemy_gluglo.gd" id="1_ths7x"]
+[ext_resource type="Texture2D" uid="uid://4itkvvexak1y" path="res://sprites/gluglo3.png" id="3_p5hv3"]
+[ext_resource type="Texture2D" uid="uid://di11nfoydk5ho" path="res://sprites/gluglo4.png" id="4_osa6h"]
+[ext_resource type="Texture2D" uid="uid://dlsxbacnx6qa7" path="res://sprites/gluglo5.png" id="5_0d7bc"]
+[ext_resource type="Texture2D" uid="uid://c4by6n4h772a7" path="res://sprites/gluglo6.png" id="6_ob7gr"]
+[ext_resource type="Texture2D" uid="uid://c6x31wih4l07k" path="res://sprites/gluglo7.png" id="7_ei86d"]
+[ext_resource type="Texture2D" uid="uid://cndg200pb356a" path="res://sprites/gluglo8.png" id="7_ormda"]
+[ext_resource type="Material" uid="uid://oodfsl4horko" path="res://scripts/basicparticle2.tres" id="10_drg56"]
+[ext_resource type="Material" uid="uid://cxaycefa3d7d8" path="res://scripts/basicparticle3.tres" id="11_t1nqu"]
+
+[sub_resource type="Animation" id="Animation_hb86k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_dyjod")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_3jrfg"]
+resource_name = "attack"
+length = 2.00001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_dyjod"), ExtResource("7_ei86d"), ExtResource("1_rnye5"), ExtResource("7_ormda"), ExtResource("1_dyjod"), ExtResource("7_ei86d"), ExtResource("7_ormda"), ExtResource("7_ei86d"), ExtResource("7_ormda"), ExtResource("7_ei86d")]
+}
+
+[sub_resource type="Animation" id="Animation_71wed"]
+resource_name = "idle"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_dyjod"), ExtResource("1_rnye5"), ExtResource("3_p5hv3"), ExtResource("4_osa6h"), ExtResource("1_dyjod"), ExtResource("1_rnye5"), ExtResource("3_p5hv3"), ExtResource("4_osa6h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_5crw3"]
+resource_name = "recovery"
+length = 3.00001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_ormda"), ExtResource("7_ei86d"), ExtResource("7_ormda"), ExtResource("7_ei86d"), ExtResource("7_ormda"), ExtResource("7_ei86d"), ExtResource("7_ormda"), ExtResource("7_ei86d")]
+}
+
+[sub_resource type="Animation" id="Animation_2h7sf"]
+resource_name = "startup"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_0d7bc"), ExtResource("6_ob7gr"), ExtResource("5_0d7bc"), ExtResource("6_ob7gr"), ExtResource("5_0d7bc"), ExtResource("6_ob7gr"), ExtResource("5_0d7bc"), ExtResource("6_ob7gr"), ExtResource("6_ob7gr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4mwt"]
+_data = {
+"RESET": SubResource("Animation_hb86k"),
+"attack": SubResource("Animation_3jrfg"),
+"idle": SubResource("Animation_71wed"),
+"recovery": SubResource("Animation_5crw3"),
+"startup": SubResource("Animation_2h7sf")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqth4"]
+radius = 8.0
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52i7b"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hihm3"]
+radius = 208.0
+
+[node name="Gluglo" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_ths7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_dyjod")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h4mwt")
+}
+autoplay = "idle"
+
+[node name="ParticleDamage" type="GPUParticles2D" parent="."]
+position = Vector2(0, 18)
+emitting = false
+process_material = ExtResource("10_drg56")
+
+[node name="ParticleBlock" type="GPUParticles2D" parent="."]
+position = Vector2(0, -14)
+emitting = false
+process_material = ExtResource("11_t1nqu")
+lifetime = 0.1
+
+[node name="AreaCuerpo" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="Cuerpo" type="CollisionShape2D" parent="AreaCuerpo"]
+position = Vector2(0, 18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lqth4")
+debug_color = Color(0, 0.866667, 0.388235, 0.419608)
+
+[node name="AreaCoraza" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaCoraza"]
+polygon = PackedVector2Array(-28, 9, 29, 9, 29, -13, 8, -13, 7, -32, -11, -32, -11, -13, -28, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_52i7b")
+
+[node name="AreaSearch" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSearch"]
+shape = SubResource("CircleShape2D_hihm3")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Attack" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="AreaCuerpo" to="." method="_on_area_cuerpo_area_entered"]
+[connection signal="body_entered" from="AreaCuerpo" to="." method="_on_area_cuerpo_body_entered"]
+[connection signal="area_entered" from="AreaCoraza" to="." method="_on_area_coraza_area_entered"]
+[connection signal="body_entered" from="AreaCoraza" to="." method="_on_area_coraza_body_entered"]
+[connection signal="body_entered" from="AreaSearch" to="." method="_on_area_search_body_entered"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Attack" to="." method="_on_attack_timeout"]

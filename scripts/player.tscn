@@ -1,0 +1,178 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0t624yir5myv"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_jdal0"]
+[ext_resource type="Material" uid="uid://bn0qcf2uqaydr" path="res://scripts/basicparticle.tres" id="2_43e6j"]
+[ext_resource type="Texture2D" uid="uid://qk3h1cbd5rmt" path="res://sprites/james.png" id="2_c3ums"]
+[ext_resource type="Material" uid="uid://brepjosylx43l" path="res://scripts/trails.tres" id="2_clsd0"]
+[ext_resource type="AudioStream" uid="uid://dy6r7biuvgpfx" path="res://sfx/shoot.wav" id="3_j6t57"]
+[ext_resource type="Texture2D" uid="uid://dgqc0pr75d50c" path="res://textures/circle.png" id="4_uusa0"]
+[ext_resource type="AudioStream" uid="uid://b5msngaiucxac" path="res://sfx/sex_death.wav" id="6_c0spe"]
+[ext_resource type="AudioStream" uid="uid://bgh3gf6540255" path="res://sfx/sex_intro.wav" id="7_e645c"]
+[ext_resource type="AudioStream" uid="uid://m75hw4y13xkh" path="res://sfx/ouch.wav" id="8_c3bu4"]
+[ext_resource type="AudioStream" uid="uid://cv1isfa8st5o4" path="res://sfx/sex_damage.wav" id="9_ary18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1xqt"]
+
+[sub_resource type="Animation" id="Animation_384ok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ehmrt"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8a5ms"]
+resource_name = "invul"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 3.36359, 1, 3.36359, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1lhg"]
+_data = {
+"RESET": SubResource("Animation_384ok"),
+"idle": SubResource("Animation_ehmrt"),
+"invul": SubResource("Animation_8a5ms")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 95
+script = ExtResource("1_jdal0")
+
+[node name="Trails" type="GPUParticles2D" parent="."]
+rotation = 1.5708
+process_material = ExtResource("2_clsd0")
+texture = ExtResource("2_c3ums")
+lifetime = 0.25
+speed_scale = 2.0
+fixed_fps = 60
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(6, 0)
+scale = Vector2(0.5, 1)
+amount = 50
+process_material = ExtResource("2_43e6j")
+lifetime = 0.4
+speed_scale = 3.5
+randomness = 0.55
+fixed_fps = 60
+fract_delta = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(3, 0)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_c3ums")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_n1xqt")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ProjectilesPositions" type="Node2D" parent="."]
+position = Vector2(-6, 0)
+
+[node name="Marker2D" type="Marker2D" parent="ProjectilesPositions"]
+position = Vector2(12, 0)
+gizmo_extents = 0.1
+
+[node name="Marker2D2" type="Marker2D" parent="ProjectilesPositions"]
+position = Vector2(12, -5)
+
+[node name="Marker2D3" type="Marker2D" parent="ProjectilesPositions"]
+position = Vector2(12, 5)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+enabled = false
+energy = 0.5
+texture = ExtResource("4_uusa0")
+texture_scale = 3.0
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f1lhg")
+}
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Shootsfx" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_j6t57")
+volume_db = -4.0
+
+[node name="Deathsfx" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_c0spe")
+
+[node name="Introsfx" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_e645c")
+
+[node name="Damagesfx" type="AudioStreamPlayer2D" parent="SFX"]
+
+[node name="Ouchsfx" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("8_c3bu4")
+
+[node name="Testsfx" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("9_ary18")
+volume_db = -10.0
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

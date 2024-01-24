@@ -1,0 +1,19 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://brepjosylx43l"]
+
+[sub_resource type="Curve" id="Curve_2ecq2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791667, 0.939623), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xofso"]
+curve = SubResource("Curve_2ecq2")
+
+[resource]
+emission_shape_offset = Vector3(0, 1, 0)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(-100, 0, 0)
+linear_accel_min = 90.0
+linear_accel_max = 90.0
+scale_min = 0.5
+scale_max = 0.5
+color = Color(0.305882, 0.290196, 0.623529, 0.172549)
+alpha_curve = SubResource("CurveTexture_xofso")

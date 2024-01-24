@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtlo2xph0vc47"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_sjy6e"]
+[ext_resource type="Texture2D" uid="uid://dgqc0pr75d50c" path="res://textures/circle.png" id="3_8wmiu"]
+[ext_resource type="Material" uid="uid://bowf8ggg7q8ri" path="res://scripts/trails2.tres" id="3_gawgj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0t7m"]
+size = Vector2(24, 2)
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(0.559999, 1)
+collision_layer = 8
+collision_mask = 70
+script = ExtResource("1_sjy6e")
+metadata/_edit_group_ = true
+
+[node name="Free" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d0t7m")
+debug_color = Color(1, 0, 0.105882, 0.419608)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.654902, 0.6, 1)
+energy = 0.2
+texture = ExtResource("3_8wmiu")
+texture_scale = 0.5
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(0.892859, 5.96046e-08)
+scale = Vector2(1.07143, 2)
+polygon = PackedVector2Array(-14.1667, -1, 14.1667, -2.98023e-08, 14.1667, -2.98023e-08, -14.1667, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.729412, 0.815686, 0.945098, 1)
+polygon = PackedVector2Array(-12.5, 0, 0, -1, 12.5, 0, 0, 1)
+
+[node name="Trails" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = ExtResource("3_gawgj")
+lifetime = 0.5
+speed_scale = 2.5
+fixed_fps = 60
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Free" to="." method="_on_free_timeout"]

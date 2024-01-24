@@ -1,0 +1,39 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://oodfsl4horko"]
+
+[sub_resource type="Curve" id="Curve_c2u1v"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1d4f8"]
+curve = SubResource("Curve_c2u1v")
+
+[sub_resource type="Gradient" id="Gradient_nh8jg"]
+colors = PackedColorArray(0.94902, 1, 0.258824, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m7c1i"]
+gradient = SubResource("Gradient_nh8jg")
+
+[resource]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 392.7
+angle_curve = SubResource("CurveTexture_1d4f8")
+inherit_velocity_ratio = 0.182
+velocity_pivot = Vector3(1, 0, 0)
+direction = Vector3(1, 1, 1)
+spread = 19.091
+initial_velocity_max = 166.67
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 49.78
+linear_accel_max = 67.97
+radial_accel_min = 51.52
+radial_accel_max = 51.52
+scale_min = 0.5
+scale_max = 2.0
+color = Color(0.733333, 0, 0.733333, 1)
+color_ramp = SubResource("GradientTexture1D_m7c1i")
+turbulence_noise_strength = 0.0
