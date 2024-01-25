@@ -25,6 +25,7 @@ var bullet_scene: PackedScene = preload("res://scripts/bullet.tscn")
 # VARIABLES
 var can_shoot: bool = true
 @export var health : float = 500.0
+var cursor = preload("res://gui/cursor.png")
 
 #func
 func _ready() -> void:
@@ -125,6 +126,8 @@ func _shoot(player_direction):
 	_shoot_sfx()
 
 func _physics_process(_delta: float) -> void:
+	Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, Vector2(30,30))
+	
 	# TIEMPO COOLDOWN BALA
 	cooldown_shoot.wait_time = 0.1
 	var player_direction := Vector2(0,0)

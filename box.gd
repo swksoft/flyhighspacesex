@@ -16,6 +16,13 @@ var full_broken = preload("res://sprites/caja3.png")
 
 var rotation_velocity = randf_range(-5.0, 5.0)
 
+var explosion_scene: PackedScene = preload("res://scripts/explosion.tscn")
+
+func _explosion(): # FUNCIONA PERO ESTE ENEMIGO NO USA EXPLOSION
+	var explosion = explosion_scene.instantiate()
+	explosion.position = global_position
+	get_tree().get_root().add_child(explosion)
+
 func _damage_player(body):
 	body._damage_player(damage)
 
@@ -28,10 +35,12 @@ func _process(_delta: float) -> void:
 	sprite.rotation_degrees += rotation_velocity
 
 func _death():
+	_explosion()
 	collision.set_deferred("disabled",true)
 	breaksfx.play()
 	modulate = "ffffff00"
-	await get_tree().create_timer(1.8).timeout
+	visible = false
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -46,4 +55,5 @@ func _on_area_entered(area: Area2D) -> void:
 	elif health < 1000 and health > 0:
 		sprite.texture = full_broken
 	elif health <= 0:
+		#modulate = "ffffff00"
 		_death()

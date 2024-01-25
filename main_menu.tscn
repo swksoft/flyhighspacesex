@@ -1,0 +1,262 @@
+[gd_scene load_steps=8 format=3 uid="uid://de8l70j1ypraa"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_sv6jg"]
+[ext_resource type="Texture2D" uid="uid://ddb1q7rhiute7" path="res://sprites/estrellas.png" id="2_k1sy3"]
+[ext_resource type="Texture2D" uid="uid://b387drlcyd5qg" path="res://sprites/galaxias.png" id="3_tlwl4"]
+[ext_resource type="Texture2D" uid="uid://osho5tj5lyxg" path="res://sprites/planetas.png" id="4_icecj"]
+
+[sub_resource type="Animation" id="Animation_drst8"]
+resource_name = "scroll"
+length = 120.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Estrellas:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-576, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Galaxias:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1561, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Planetas:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-576, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_6i2ov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Estrellas:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-576, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Galaxias:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1561, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Planetas:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-576, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7p8k"]
+_data = {
+"RESET": SubResource("Animation_6i2ov"),
+"scroll": SubResource("Animation_drst8")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sv6jg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Options" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="Title" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.08
+anchor_right = 0.5
+anchor_bottom = 0.096
+offset_left = -236.0
+offset_right = 236.0
+offset_bottom = 69.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Title"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="CanvasLayer/Title/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 50
+text = "Fly High! Space Sex!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VersionDisplay" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.85
+anchor_top = 1.0
+anchor_right = 0.98
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Version" type="Label" parent="CanvasLayer/VersionDisplay"]
+layout_mode = 2
+text = "build 1.24.1.2024"
+
+[node name="CompanyDisplay" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.095
+anchor_right = 0.117
+anchor_bottom = 0.05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SWKsoft" type="Label" parent="CanvasLayer/CompanyDisplay"]
+layout_mode = 2
+text = "SWKsoft presents..."
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Estrellas" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Estrellas"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_k1sy3")
+centered = false
+
+[node name="Galaxias" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-1561, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Galaxias"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_tlwl4")
+centered = false
+
+[node name="Planetas" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-576, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Planetas"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_icecj")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground"]
+libraries = {
+"": SubResource("AnimationLibrary_r7p8k")
+}
+autoplay = "scroll"
+
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

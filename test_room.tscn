@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://6ooh8jeuwl7n"]
+[gd_scene load_steps=15 format=3 uid="uid://6ooh8jeuwl7n"]
 
 [ext_resource type="PackedScene" uid="uid://c0t624yir5myv" path="res://scripts/player.tscn" id="1_0ylgm"]
+[ext_resource type="Script" path="res://test_room.gd" id="1_tjg35"]
 [ext_resource type="PackedScene" uid="uid://bpdh7i4t5reuh" path="res://scripts/test_enemy.tscn" id="2_d1cnx"]
 [ext_resource type="PackedScene" uid="uid://cid34fgv8b6d5" path="res://scripts/enemy_target.tscn" id="3_qdjdi"]
 [ext_resource type="PackedScene" uid="uid://bt82wc6yy77cx" path="res://ui.tscn" id="4_k12y0"]
@@ -195,6 +196,7 @@ sources/0 = SubResource("TileSetAtlasSource_3f3q2")
 sources/1 = SubResource("TileSetAtlasSource_dgikg")
 
 [node name="TestRoom" type="Node2D"]
+script = ExtResource("1_tjg35")
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(1, 1, 1, 0.164706)

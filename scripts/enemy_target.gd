@@ -21,7 +21,7 @@ extends CharacterBody2D
 # SCENE
 @export var explosion_scene: PackedScene
 
-func _explosion(): # NO SE LLAMA EN ESTE ENEMIGO (CODIGO FUNCIONA)
+func _explosion(): # FUNCIONA PERO ESTE ENEMIGO NO USA EXPLOSION
 	var explosion = explosion_scene.instantiate()
 	explosion.position = global_position
 	get_tree().get_root().add_child(explosion)
@@ -41,8 +41,9 @@ func _physics_process(delta: float) -> void:
 func _death():
 	defeated_sfx.play()
 	animation.play("death")
-	await animation.animation_finished
 	_explosion()
+	await animation.animation_finished
+	#_explosion()
 	queue_free()
 
 func _on_area_daño_body_entered(body):

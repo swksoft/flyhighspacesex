@@ -194,13 +194,14 @@ _data = {
 "idle": SubResource("Animation_lbn7a")
 }
 
-[node name="EnemyTarget" type="CharacterBody2D"]
+[node name="EnemyTarget" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_x0wnm")
 explosion_scene = ExtResource("2_4oout")
 
 [node name="CollisionEnemy" type="CollisionShape2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(3.20087, 3.20087)
 shape = SubResource("CircleShape2D_ryyeh")
 
@@ -213,6 +214,7 @@ collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDaño"]
 shape = SubResource("RectangleShape2D_j3w2u")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="LightEnemy" type="PointLight2D" parent="."]
 visible = false
