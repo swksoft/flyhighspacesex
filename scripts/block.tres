@@ -1,0 +1,28 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://4fbo3ues2fmx"]
+
+[sub_resource type="Curve" id="Curve_m7rhi"]
+_data = [Vector2(0, 0.773585), 0.0, 0.0, 0, 0, Vector2(0.733974, 0.54717), 0.0, 0.0, 0, 0, Vector2(0.996795, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_idcuf"]
+curve = SubResource("Curve_m7rhi")
+
+[resource]
+emission_shape_offset = Vector3(5, 0, 0)
+emission_shape_scale = Vector3(1, 35, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 679.6
+direction = Vector3(0, 0, 0)
+spread = 81.404
+gravity = Vector3(100, 0, 0)
+radial_accel_min = -80.0
+radial_accel_max = 80.0
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.729412, 0.815686, 0.945098, 1)
+alpha_curve = SubResource("CurveTexture_idcuf")
